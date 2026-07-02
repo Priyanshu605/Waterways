@@ -27,8 +27,8 @@ WaterWays is a Spring Boot project that allows customers to book cruises based o
 
 1. **Clone the Repository:**
 ```
-git clone https://github.com/Gaurav31U/WaterWays-Java-Spring-Boot-Project-DBMS.git
-cd WaterWays-Java-Spring-Boot-Project-DBMS
+git clone https://github.com/Priyanshu605/Waterways.git
+cd WaterWays
 ```
 2. **Install Java SDK:**
    - Download and install the Java SDK from the official website.
@@ -60,5 +60,3 @@ cd WaterWays-Java-Spring-Boot-Project-DBMS
 - The project implements transactions using MySQL queries to ensure database transactions follow the ACID properties.
 - Provides functionality for searching available cruise tours by departure place, destination, and time.
 - Includes features for food and room booking on the cruise.
-
-For more detailed information and documentation, please refer to the project repository on [GitHub](https://github.com/Gaurav31U/WaterWays-Java-Spring-Boot-Project-DBMS).
