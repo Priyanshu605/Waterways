@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns: th="http://www.thymeleaf.org">
+<head>
+  <title>Voyages</title>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"> -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="map" th:href="@{/css/bootstrap.min.css.map}">
+
+</head>
+<body>
+
+<div th:replace="NavbarAdmin :: navAdmin"></div>
+
+
+<div style="padding: 2%;">
+  <!--form  -->
+  <div class="card border-info" style="width:40rem;">
+    <div class="card login-form">
+      <h3 class="card-header text-center text-info"> Voyages </h3>
+      <div class="card-body">
+        <div class="card-text">
+          <form th:action="@{/admin/voyages}" method="get">
+            <div class="form-group">
+              <label>Departing From </label>
+              <select th:name="fromid" class="custom-select">
+                <option value="-1">All</option>
+                <option th:each="harbor: ${harbors}" th:text="${harbor.getLocation()}"
+                        th:value="${harbor.getHarborId()}"></option>
+              </select>
+
+            </div>
+            <div class="form-group">
+              <label>Arriving At </label>
+              <select th:name="toid" class="custom-select">
+                <option value="-1">All</option>
+                <option th:each="harbor: ${harbors}" th:text="${harbor.getLocation()}"
+                        th:value="${harbor.getHarborId()}"></option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label> Departing After </label>
+              <input type="datetime-local" th:name="fromdate" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+              <label> Arrival Before </label>
+              <input type="datetime-local" th:name="todate" class="form-control form-control-sm">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block"> Search </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="card border-info">
+    <div class="card-body">
+      <div style="margin-top: 10px; margin-bottom:10px;">
+        <a class="btn btn-primary" th:href="@{/admin/voyage/add}">Add Voyage</a>
+      </div>
+
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+          <th> Voyage ID</th>
+          <th> Ship Serial ID</th>
+          <th> Fare</th>
+          <th> Carrier</th>
+          <th> Departure Harbor</th>
+          <th> Arrival Harbor</th>
+          <th> Departure Time</th>
+          <th> Arrival Time</th>
+          <th> Status</th>
+          <th> Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="voyage: ${voyages}">
+          <td th:text="${voyage.getVoyageId()}"></td>
+          <td th:text="${voyage.getShipSerialId()}"></td>
+          <td th:text="${voyage.getFare()}"></td>
+          <td th:text="${voyage.getModelName()}"></td>
+          <td th:text="${voyage.getDepartureHarborName()}"></td>
+          <td th:text="${voyage.getArrivalHarborName()}"></td>
+          <td th:text="${voyage.getDepartureTime()}"></td>
+          <td th:text="${voyage.getArrivalTime()}"></td>
+          <td th:text="${voyageStatuses.get(voyage.getVoyageStatusCode())}"></td>
+
+          <td>
+            <a th:href="@{/admin/voyage/{id} (id=${voyage.getVoyageId()})}" class="btn btn-primary">Details</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
